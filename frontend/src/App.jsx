@@ -42,18 +42,21 @@ export default function App(){
     await load();
   }
 
-  const filtered = tasks.filter(t=>{
-    if (query) return (t.title||'').toLowerCase().includes(query.toLowerCase());
-    return true;
-  });
+  	const filtered = tasks?.filter(t => {
+		if (query) return (t.title || '').toLowerCase().includes(query.toLowerCase());
+		return true;
+	}) || [];
+
 
   return (
     <div className='app'>
       <div className='card'>
         <Header title='Unique To-Do (React + Gin)'>
           <div className='controls'>
-            <div className='small'>Completed: {tasks.filter(t=>t.completed).length}/{tasks.length}</div>
-          </div>
+            						<div className='small'>
+							Completed: {tasks?.filter(t => t.completed).length || 0}/{tasks?.length || 0}
+						</div>
+
         </Header>
 
         <div style={{display:'flex', gap:8, marginTop:12}}>
